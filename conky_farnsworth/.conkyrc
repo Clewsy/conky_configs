@@ -1,0 +1,157 @@
+conky.config = {
+	xinerama_head = 2,			--set to '2' for dual monitor setup
+	alignment = 'top_right',		--options {top/middle/bottom}_{left/middle/right}
+	background = true,			--set true to fork to background when started
+	border_width = 0,			--border width in pixels
+	cpu_avg_samples = 4,			--number of samples to average for CPU monitoring
+	default_color = 'green',		--default color and border color
+	default_outline_color = 'green',
+	default_shade_color = 'green',
+	draw_borders = false,			--draw borders around text
+	draw_graph_borders = true,		--draw borders around graphs
+	draw_outline = false,
+	draw_shades = false,
+	use_xft = true,
+	font = 'mono:size=12',		--define the default font
+	gap_x = 5,				--horizontal offset from alignment in pixels
+	gap_y = 80,				--vertical offset from alignment in pixels
+	minimum_width = 260,
+	maximum_width = 260,
+	net_avg_samples = 2,			--number of samples to average for network monitoring
+	no_buffers = true,			--subtract file system buffers from used memory
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+	own_window = true,
+	own_window_class = 'Conky',
+	own_window_type = 'desktop',
+	own_window_argb_visual = true,		--ARGB can be used for real transparency
+	own_window_argb_value = 0,		--define level of opacity/transparency (0-255:0-100% opacity)
+	double_buffer = true,			--use the Xdbe extension? (eliminates flicker)
+	stippled_borders = 0,			--border stippling (dashing) in pixels
+	update_interval = 1.0,
+	uppercase = false,
+	use_spacer = 'none',
+	show_graph_scale = false,
+	show_graph_range = false,
+	color1 = 'orange',			--try here for X11 color options:
+	color2 = 'white',			--https://www.graphviz.org/doc/info/colors.html
+	color3 = 'gray'
+}
+
+conky.text = [[
+### HEADER ###
+${color1}${font mono:bold:size=12}\
+${alignc}          __             
+${alignc}         / /  /\         
+${alignc}        / /  /  \        
+${alignc}       / /  / /\ \       
+${alignc}      / /  /  \ \ \      
+${alignc}     / /  / /\ \ \ \     
+${alignc}    / /__/ /__\ \ \ \    
+${alignc}   /____________ \ \ \   
+${alignc}    ____________\ \ \/   
+${alignc}    \______________\     
+
+### SYSTEM ###
+${font mono:bold:size=12}${color1}SYSTEM ${hr 2}
+${font :bold}${color2}Hostname:${font}${color3}${alignr}${nodename}
+${font :bold}${color2}Architecture:${font}${color3}${alignr}${machine}
+${font :bold}${color2}OS:${font}${color3}${alignr}${exec uname -o}
+${font}${color2}├─Kernel:${font}${color3}${alignr}${exec uname -s}
+${font}${color2}└─Release:${font}${color3}${alignr}${exec uname -r}
+${font :bold}${color2}Distribution:${font}${color3}${alignr}${exec lsb_release -i | cut -f2}
+${font}${color2}├─Release:${font}${color3}${alignr}${exec lsb_release -r | cut -f2}
+${font}${color2}└─Codename:${font}${color3}${alignr}${exec lsb_release -c | cut -f2}
+
+### HEALTH ###
+${font mono:bold:size=12}${color1}HEALTH ${hr 2}
+${font mono:bold}${color2}Uptime:${font}${color3}${alignr}${uptime}
+${font mono:bold}${color2}System Temp:${font}${color3}${alignr}${hwmon 2 temp 1}°C
+${font mono:bold}${color2}CPU${font}─┬─Max Temp:${font}${color3}${alignr}${hwmon 0 temp 1}°C
+${font mono}${color2}    ├─Core─┬─0:${font}${color3}${alignr}${hwmon 0 temp 2}°C
+${font mono}${color2}    │      ├─1:${font}${color3}${alignr}${hwmon 0 temp 3}°C
+${font mono}${color2}    │      ├─2:${font}${color3}${alignr}${hwmon 0 temp 4}°C
+${font mono}${color2}    │      ├─3:${font}${color3}${alignr}${hwmon 0 temp 5}°C
+${font mono}${color2}    │      ├─4:${font}${color3}${alignr}${hwmon 0 temp 6}°C
+${font mono}${color2}    │      └─5:${font}${color3}${alignr}${hwmon 0 temp 7}°C
+${font mono}${color2}    └─Fan Speed:${font}${color3}${alignr}${hwmon 1 fan 2}rpm
+${font mono:bold}${color2}GPU${font}─┬─Temp:${font}${color3}${alignr}${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}°C
+${font mono}${color2}    └─Fan Speed:${font}${color3}${alignr}${exec nvidia-settings -q GPUCurrentFanSpeedRPM -t}rpm
+
+### PROCESSORS ###
+${font mono:bold:size=12}${color1}PROCESSORS ${hr 2}
+${font mono:bold}${color2}${cpugraph cpu0}
+${font mono:bold}${color2}Core─┬─0: ${font}${color3}${cpu cpu0}% ${cpubar cpu0}
+${font mono:bold}${color2}     ├─1: ${font}${color3}${cpu cpu1}% ${cpubar cpu1}
+${font mono:bold}${color2}     ├─2: ${font}${color3}${cpu cpu2}% ${cpubar cpu2}
+${font mono:bold}${color2}     ├─3: ${font}${color3}${cpu cpu3}% ${cpubar cpu3}
+${font mono:bold}${color2}     ├─4: ${font}${color3}${cpu cpu3}% ${cpubar cpu3}
+${font mono:bold}${color2}     └─5: ${font}${color3}${cpu cpu3}% ${cpubar cpu3}
+
+### MEMORY ###
+${font mono:bold:size=12}${color1}MEMORY ${hr 2}
+${font mono:bold}${color2}RAM:${font}${color3}${alignc} ${mem}/${memmax} ${alignr}${memperc}%
+${font mono:bold}${color3}${membar}
+${font mono:bold}${color2}SWAP:${font}${color3}${alignc} ${swap}/${swapmax} ${alignr}${swapperc}%
+${font mono:bold}${color3}${swapbar}
+
+### STORAGE ###
+${font mono:bold:size=12}${color1}STORAGE${hr 2}
+${font mono:bold}${color2}Local
+${font mono:bold}${color3}├─root:${font}${color3}${alignr}${fs_used /}/${fs_size /}
+${font mono:bold}${color3}│ ${fs_used_perc /}% ${fs_bar /}
+${font mono:bold}${color3}└─windoze:${font}${color3}${alignr}${fs_used /mnt/windoze/}/${fs_size /mnt/windoze/}
+${font mono:bold}${color3}  ${fs_used_perc /mnt/windoze/}% ${fs_bar /mnt/windoze/}
+${font mono:bold}${color2}Network
+${font mono:bold}${color3}├─cl0ud:${font}${color3}${alignr}${fs_used /mnt/zapp/cl0ud/}/${fs_size /mnt/zapp/cl0ud/}
+${font mono:bold}${color3}│ ${fs_used_perc /mnt/zapp/cl0ud/}% ${fs_bar /mnt/zapp/cl0ud/}
+${font mono:bold}${color3}└─fileb0t:${font}${color3}${alignr}${fs_used /mnt/zapp/data/}/${fs_size /mnt/zapp/data/}
+${font mono:bold}${color3}  ${fs_used_perc /mnt/zapp/data/}% ${fs_bar /mnt/zapp/data/}
+
+### PROCESSES ###
+${font mono:bold:size=12}${color1}PROCESSES ${hr 2}
+${font mono:bold}${color2}${top_mem name 1}${font}${color3}${alignr}${top mem 1}%
+${font mono:bold}${color2}${top_mem name 2}${font}${color3}${alignr}${top mem 2}%
+${font mono:bold}${color2}${top_mem name 3}${font}${color3}${alignr}${top mem 3}%
+${font mono:bold}${color2}${top_mem name 4}${font}${color3}${alignr}${top mem 4}%
+${font mono:bold}${color2}${top_mem name 5}${font}${color3}${alignr}${top mem 5}%
+${font mono:bold}${color2}${top_mem name 6}${font}${color3}${alignr}${top mem 6}%
+${font mono:bold}${color2}${top_mem name 7}${font}${color3}${alignr}${top mem 7}%
+${font mono:bold}${color2}${top_mem name 8}${font}${color3}${alignr}${top mem 8}%
+${font mono:bold}${color2}${top_mem name 9}${font}${color3}${alignr}${top mem 9}%
+${font mono:bold}${color2}${top_mem name 10}${font}${color3}${alignr}${top mem 10}%
+
+### NETWORK ###
+${font mono:bold:size=12}${color1}NETWORK ${hr 2}
+## IF NO INTERNET
+${if_empty ${execi 3600 curl -s ipecho.net/plain}}\
+${font mono:bold}${color2}No External Connection\
+## ELSE SHOW PUBLIC IP
+${else}\
+${font mono:bold}${color2}Public
+${font mono:bold}${color3}├─IP:${font}${alignr}${execi 3600 curl ipecho.net/plain}
+${font mono:bold}${color3}├─Country:${font}${alignr}${execi 3600 curl ipinfo.io | grep "country" | cut -d "\"" -f4}
+${font mono:bold}${color3}├─Region:${font}${alignr}${execi 3600 curl ipinfo.io | grep "region" | cut -d "\"" -f4}
+${font mono:bold}${color3}└─City:${font}${alignr}${execi 3600 curl ipinfo.io | grep "city" | cut -d "\"" -f4}\
+${endif}
+## IF up enp2s0
+${if_up enp2s0}\
+${font mono:bold}${color2}Local
+${font mono:bold}${color3}├─IP:${font}${alignr}${addr enp2s0}
+${font mono:bold}${color3}├─Gateway:${font}${alignr}${gw_ip}
+${font mono:bold}${color3}└─DNS:${font}${alignr}${nameserver}
+${font mono:bold}${color2}Download
+${font mono:bold}${color3}├─Speed:${font}${alignr}${downspeed enp2s0}
+${font mono:bold}${color3}└─Total:${font}${alignr}${totaldown enp2s0}
+${font}${color3}${downspeedgraph enp2s0}
+${font mono:bold}${color2}Upload
+${font mono:bold}${color3}├─Speed:${font}${alignr}${upspeed enp2s0}
+${font mono:bold}${color3}└─Total:${font}${alignr}${totalup enp2s0}
+${font}${color3}${upspeedgraph enp2s0}
+
+### LOGO ###
+${font}${color1}${hr 2}
+
+${font OpenLogos:normal:size=60}${goto 120}J${font}
+]]
