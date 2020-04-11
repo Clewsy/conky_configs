@@ -1,0 +1,164 @@
+conky.config = {
+	xinerama_head = 1,			--set to '2' for dual monitor setup
+	alignment = 'top_right',		--options {top/middle/bottom}_{left/middle/right}
+	background = true,			--set true to fork to background when started
+	border_width = 0,			--border width in pixels
+	cpu_avg_samples = 4,			--number of samples to average for CPU monitoring
+	default_color = 'gray',			--default color and border color
+	draw_borders = false,			--draw borders around text
+	draw_graph_borders = false,		--draw borders around graphs
+	draw_outline = false,
+	draw_shades = false,
+	use_xft = true,
+	font = 'sans-serif:size=8',		--define the default font
+	gap_x = 5,				--horizontal offset from alignment in pixels
+	gap_y = 20,				--vertical offset from alignment in pixels
+	minimum_height = 5,
+	minimum_width = 150,
+	maximum_width = 150,
+	net_avg_samples = 2,			--number of samples to average for network monitoring
+	no_buffers = true,			--subtract file system buffers from used memory
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+	own_window = true,
+	own_window_class = 'Conky',
+	own_window_type = 'desktop',
+	own_window_argb_visual = true,		--ARGB can be used for real transparency
+	own_window_argb_value = 0,		--define level of opacity/transparency (0-255:0-100% opacity)
+	double_buffer = true,			--use the Xdbe extension? (eliminates flicker)
+	stippled_borders = 0,			--border stippling (dashing) in pixels
+	update_interval = 1.0,
+	uppercase = false,
+	use_spacer = 'none',
+	show_graph_scale = false,
+	show_graph_range = false,
+	color1 = 'white',			--try here for X11 color options:
+	color2 = 'deepskyblue',			--https://www.graphviz.org/doc/info/colors.html
+	color3 = 'deepskyblue',
+	mpd_host = '127.0.0.1',
+	mpd_port = '6600'
+}
+
+conky.text = [[
+### HEADER ###
+${alignc}${color3}${font mono:bold:size=8}\
+${alignc}${color3}          __             ${color1}
+${alignc}${color3}         / /  /\         ${color1}
+${alignc}${color3}        / /  /  \        ${color1}
+${alignc}${color3}       / /  / /\ \       ${color1}
+${alignc}${color3}      / /  /  \ \ \      ${color1}
+${alignc}${color3}     / /  / /\ \ \ \     ${color1}
+${alignc}${color3}    / /__/ /__\ \ \ \    ${color1}
+${alignc}${color3}   /____________ \ \ \   ${color1}
+${alignc}${color3}    ____________\ \ \/   ${color1}
+${alignc}${color3}    \______________\     ${color1}
+
+### SYSTEM ###
+${font sans-serif:bold:size=12}${color2}SYSTEM ${hr 2}${font}${color1}
+Machine:${alignr}${machine}
+OS:${alignr}${exec uname -o}
+#Kernel:${alignr}${exec uname -s}
+Release:${alignr}${exec uname -r}
+Distribution:${alignr}${exec lsb_release -i | cut -f2} ${exec lsb_release -r | cut -f2}
+Codename:${alignr}${exec lsb_release -c | cut -f2}
+Hostname:${alignr}${nodename}
+
+### HEALTH ###
+${font sans-serif:bold:size=12}${color2}HEALTH ${hr 2}${font}${color1}
+Uptime:${alignr}${uptime}
+Battery Life:${alignr}${battery_time}
+Charge:${alignr}${battery}
+Temp System: ${alignr}${hwmon 1 temp 1}°C
+Temp Core0: ${alignr}${hwmon 3 temp 2}°C
+Temp Core1: ${alignr}${hwmon 3 temp 3}°C
+Temp Core2: ${alignr}${hwmon 3 temp 4}°C
+Temp Core3: ${alignr}${hwmon 3 temp 5}°C
+
+### PROCESSORS ###
+${font sans-serif:bold:size=12}${color2}PROCESSORS ${hr 2}${font}${color1}
+${cpugraph cpu0}
+Core0: ${cpu cpu0}% ${cpubar cpu0}
+Core1: ${cpu cpu1}% ${cpubar cpu1}
+Core2: ${cpu cpu2}% ${cpubar cpu2}
+Core3: ${cpu cpu3}% ${cpubar cpu3}
+
+### MEMORY ###
+${font sans-serif:bold:size=12}${color2}MEMORY ${hr 2}${font}${color1}
+RAM ${alignc} ${mem} / ${memmax} ${alignr}${memperc}%
+${membar}
+#SWAP ${alignc} ${swap} / ${swapmax} ${alignr}${swapperc}%
+#${swapbar}
+
+### STORAGE ###
+${font sans-serif:bold:size=12}${color2}STORAGE ${hr 2}${font}${color1}
+Root ${alignc} ${fs_used /} / ${fs_size /} ${alignr}${fs_used_perc /}%
+${fs_bar /}
+
+### PROCESSES ###
+${font sans-serif:bold:size=12}${color2}PROCESSES ${hr 2}${font}${color1}
+${top_mem name 1}${alignr}${top mem 1}%
+${top_mem name 2}${alignr}${top mem 2}%
+${top_mem name 3}${alignr}${top mem 3}%
+${top_mem name 4}${alignr}${top mem 4}%
+${top_mem name 5}${alignr}${top mem 5}%
+#${top_mem name 6}${alignr}${top mem 6}%
+#${top_mem name 7}${alignr}${top mem 7}%
+#${top_mem name 8}${alignr}${top mem 8}%
+#${top_mem name 9}${alignr}${top mem 9}%
+#${top_mem name 10}${alignr}${top mem 10}%
+
+### NETWORK ###
+${font sans-serif:bold:size=12}${color2}NETWORK ${hr 2}${font}${color1}
+## IF NO INTERNET
+${if_empty ${execi 3600 curl -s ipinfo.io | grep -m1 "ip" | cut -d "\"" -f4}}No External Connection\
+## ELSE SHOW PUBLIC IP
+${else}\
+IP Public:${alignr}${execi 600 curl -s ipinfo.io | grep -m1 "ip" | cut -d "\"" -f4}
+Region:${alignr}${execi 600 curl ipinfo.io | grep "region" | cut -d "\"" -f4}, ${execi 600 curl ipinfo.io | grep "country" | cut -d "\"" -f4}
+City:${alignr}${execi 600 curl ipinfo.io | grep "city" | cut -d "\"" -f4}\
+${endif}
+## IFwlp58s0
+${if_up wlp58s0}\
+IP Local:${alignr}${addr wlp58s0}
+Gateway:${alignr}${gw_ip}
+DNS:${alignr}${nameserver}
+ESSID:${alignr}${wireless_essid wlp58s0} (${wireless_link_qual_perc wlp58s0}%)
+${downspeedgraph wlp58s0}
+Down:${downspeed wlp58s0} $alignr Total: ${totaldown wlp58s0}
+${upspeedgraph wlp58s0}
+Up:${upspeed wlp58s0} $alignr Total: ${totalup wlp58s0}
+## ELSE IF enp2s0
+${else}${if_up enp2s0}\
+IP Local:${alignr}${addr enp2s0}
+Gateway:${alignr}${gw_ip}
+DNS:${alignr}${nameserver}
+${downspeedgraph enp2s0}
+Down:${downspeed enp2s0} $alignr Total: ${totaldown enp2s0}
+${upspeedgraph enp2s0}
+Up:${upspeed enp2s0} $alignr Total: ${totalup enp2s0}\
+## ELSE IF ETH1
+${else}${if_up eth1}\
+IP Local:${alignr}${addr eth1}{
+Gateway:${alignr}${gw_ip}
+DNS:${alignr}${nameserver}
+${downspeedgraph eth1}
+Down:${downspeed eth1} $alignr Total: ${totaldown eth1}
+${upspeedgraph eth1}
+Up:${upspeed eth1} $alignr Total: ${totalup eth1}\
+${endif}${endif}${endif}\
+
+### MUSIC ###
+${if_mpd_playing}\
+${font sans-serif:bold:size=12}${color2}MUSIC${hr 2}${font}${color1}
+Album ${alignr}$mpd_album
+${if_empty ${mpd_date}}${else}Year ${alignr}${mpd_date}${endif}
+Artist ${alignr}$mpd_artist
+Title ${alignr}${mpd_title 30}
+${mpd_elapsed}/${mpd_length}${alignr}${mpd_percent}%
+${alignr}${mpd_bar 5,150}
+Vol:${mpd_vol} ${alignr}${mpd_status}
+${else}${font}${color2}${hr 2}
+${font OpenLogos:normal:size=60}${goto 55}J${font}
+${endif}
+]]
