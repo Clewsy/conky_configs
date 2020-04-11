@@ -12,7 +12,7 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font = 'mono:size=12',		--define the default font
+	font = 'mono:size=12',			--define the default font
 	gap_x = 5,				--horizontal offset from alignment in pixels
 	gap_y = 80,				--vertical offset from alignment in pixels
 	minimum_width = 260,
