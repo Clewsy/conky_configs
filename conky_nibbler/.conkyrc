@@ -34,8 +34,8 @@ conky.config = {
 	show_graph_scale = false,
 	show_graph_range = false,
 	color1 = 'white',			--try here for X11 color options:
-	color2 = 'deepskyblue',			--https://www.graphviz.org/doc/info/colors.html
-	color3 = 'deepskyblue',
+	color2 = 'orange',			--https://www.graphviz.org/doc/info/colors.html
+	color3 = 'orange',
 	mpd_host = '127.0.0.1',
 	mpd_port = '6600'
 }
