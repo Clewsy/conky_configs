@@ -147,8 +147,16 @@ ${font mono:bold}${color3}├─Speed:${font}${alignr}${upspeed enp2s0}
 ${font mono:bold}${color3}└─Total:${font}${alignr}${totalup enp2s0}
 ${font}${color3}${upspeedgraph enp2s0}
 
-### LOGO ###
-${font}${color1}${hr 2}
-
+### MUSIC ###
+${if_mpd_playing}\
+${font sans-serif:bold:size=12}${color1}MUSIC${hr 2}${font}${color}
+${color}Album  ${alignr}${color3} ${if_empty ${mpd_album}}Unknown${else}${mpd_album}${endif}
+${color}Year   ${alignr}${color3} ${if_empty ${mpd_date}}Unknown${else}${mpd_date}${endif}
+${color}Artist ${alignr}${color3} ${if_empty ${mpd_artist}}Unknown${else}${mpd_artist}${endif}
+${color}Title  ${alignr}${color3} ${if_empty ${mpd_title}}Unknown${else}${mpd_title 30}${endif}
+${color}${if_empty ${mpd_elapsed}}${else}${mpd_elapsed}/${mpd_length}${alignr}${color3}${mpd_bar 5,150}${endif}
+${color}Volume ${if_empty ${mpd_vol}}???${else}${mpd_vol}%${endif} ${alignr}${color3}${if_empty ${mpd_status}}${else}${mpd_status}${endif}
+${else}${font}${color1}${hr 2}
 ${font OpenLogos:normal:size=60}${goto 120}J${font}
+${endif}
 ]]
