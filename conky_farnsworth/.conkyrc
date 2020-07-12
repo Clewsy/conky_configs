@@ -31,7 +31,7 @@ conky.config = {
 	use_spacer = 'none',
 	show_graph_scale = false,
 	show_graph_range = false,
-	color1 = 'forestgreen',			--try here for X11 color options:
+	color1 = 'dodgerblue',			--try here for X11 color options:
 	color2 = 'white',			--https://www.graphviz.org/doc/info/colors.html
 	color3 = 'gray'
 }
