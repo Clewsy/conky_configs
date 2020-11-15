@@ -70,10 +70,10 @@ Uptime:${alignr}${uptime}
 Battery Life:${alignr}${battery_time}
 Charge:${alignr}${battery}
 Temp System: ${alignr}${hwmon 1 temp 1}°C
-Temp Core0: ${alignr}${hwmon 3 temp 2}°C
-Temp Core1: ${alignr}${hwmon 3 temp 3}°C
-Temp Core2: ${alignr}${hwmon 3 temp 4}°C
-Temp Core3: ${alignr}${hwmon 3 temp 5}°C
+Temp Core0: ${alignr}${hwmon 4 temp 2}°C
+Temp Core1: ${alignr}${hwmon 4 temp 3}°C
+Temp Core2: ${alignr}${hwmon 4 temp 4}°C
+Temp Core3: ${alignr}${hwmon 4 temp 5}°C
 
 ### PROCESSORS ###
 ${font sans-serif:bold:size=12}${color2}PROCESSORS ${hr 2}${font}${color1}
