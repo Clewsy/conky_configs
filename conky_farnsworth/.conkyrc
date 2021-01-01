@@ -33,7 +33,9 @@ conky.config = {
 	show_graph_range = false,
 	color1 = 'dodgerblue',			--try here for X11 color options:
 	color2 = 'white',			--https://www.graphviz.org/doc/info/colors.html
-	color3 = 'gray'
+	color3 = 'gray',
+	mpd_host = '127.0.0.1',
+	mpd_port = '6600'
 }
 
 conky.text = [[
