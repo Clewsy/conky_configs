@@ -35,7 +35,7 @@ conky.config = {
 	color2 = 'white',			--https://www.graphviz.org/doc/info/colors.html
 	color3 = 'gray',
 	mpd_host = '127.0.0.1',
-	mpd_port = '6600'
+	mpd_port = 6660,
 }
 
 conky.text = [[
@@ -155,7 +155,7 @@ ${font sans-serif:bold:size=12}${color1}MUSIC${hr 2}${font}${color}
 ${color}Album  ${alignr}${color3} ${if_empty ${mpd_album}}Unknown${else}${mpd_album}${endif}
 ${color}Year   ${alignr}${color3} ${if_empty ${mpd_date}}Unknown${else}${mpd_date}${endif}
 ${color}Artist ${alignr}${color3} ${if_empty ${mpd_artist}}Unknown${else}${mpd_artist}${endif}
-${color}Title  ${alignr}${color3} ${if_empty ${mpd_title}}Unknown${else}${mpd_title 30}${endif}
+${color}Title  ${alignr}${color3} ${if_empty ${mpd_title}}Unknown${else}${scroll 20 ${mpd_title}}${endif}
 ${color}${if_empty ${mpd_elapsed}}${else}${mpd_elapsed}/${mpd_length}${alignr}${color3}${mpd_bar 5,150}${endif}
 ${color}Volume ${exec amixer -c 0 get Master | grep -e "Mono:" | awk '{print $4}'} ${alignr}${color3}${if_empty ${mpd_status}}${else}${mpd_status}${endif}
 ${else}${font}${color1}${hr 2}
