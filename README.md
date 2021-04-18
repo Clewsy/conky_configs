@@ -8,5 +8,5 @@ Laptop screenshot:
 
 [link_github_conky]:https://github.com/brndnmtthws/conky
 
-[image_repo_farnsworth]:conky_farnsworth/farnsworth_screenshot.png
-[image_repo_nibbler]:conky_nibbler/nibbler_screenshot.png
+[image_repo_farnsworth]:farnsworth/farnsworth_screenshot.png
+[image_repo_nibbler]:nibbler/nibbler_screenshot.png
