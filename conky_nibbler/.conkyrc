@@ -113,11 +113,11 @@ ${font2}${color2}${top_mem name 5}	${color3}${alignr}${top mem 5}%
 ### NETWORK ###
 ${font1}${color1}NETWORK${hr 2}
 ## IF NO INTERNET
-${if_empty ${execi 3600 curl -s ifconfig.co/json | grep -m1 "\"ip\":" | cut -d "\"" -f4}}\
+${if_empty ${execi 3600 curl -s ipecho.net/plain}}\
 ${font2}${color2}No External Connection\
 ## ELSE SHOW PUBLIC IP
 ${else}\
-${font2}${color2}IP Public:	${color3}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "\"ip\":" | cut -d "\"" -f4}
+${font2}${color2}IP Public:	${color3}${alignr}${execi 600 curl -s ipecho.net/plain}
 ${font2}${color2}Region:	${color3}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}, ${execi 600 curl -s ifconfig.co/json | grep -m1 "country_iso" | cut -d "\"" -f4}
 ${font2}${color2}City:		${color3}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
 ${endif}

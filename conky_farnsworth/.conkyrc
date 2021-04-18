@@ -130,9 +130,9 @@ ${font mono:bold}${color2}No External Connection\
 ${else}\
 ${font mono:bold}${color2}Public
 ${font mono:bold}${color3}├─IP:${font}${alignr}${execi 3600 curl ipecho.net/plain}
-${font mono:bold}${color3}├─Country:${font}${alignr}${execi 3600 curl ipinfo.io | grep "country" | cut -d "\"" -f4}
-${font mono:bold}${color3}├─Region:${font}${alignr}${execi 3600 curl ipinfo.io | grep "region" | cut -d "\"" -f4}
-${font mono:bold}${color3}└─City:${font}${alignr}${execi 3600 curl ipinfo.io | grep "city" | cut -d "\"" -f4}\
+${font mono:bold}${color3}├─Country:${font}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "country_iso" | cut -d "\"" -f4}
+${font mono:bold}${color3}├─Region:${font}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}
+${font mono:bold}${color3}└─City:${font}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
 ${endif}
 ## IF up enp2s0
 ${if_up enp2s0}\
