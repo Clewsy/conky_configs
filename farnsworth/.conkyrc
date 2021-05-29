@@ -1,6 +1,6 @@
 conky.config = {
 	xinerama_head = 2,			--set to '2' for dual monitor setup
-	alignment = 'top_left',			--options {top/middle/bottom}_{left/middle/right}
+	alignment = 'top_right',		--options {top/middle/bottom}_{left/middle/right}
 	background = true,			--set true to fork to background when started
 	border_width = 0,			--border width in pixels
 	cpu_avg_samples = 4,			--number of samples to average for CPU monitoring
@@ -10,7 +10,7 @@ conky.config = {
 	draw_shades = false,
 	use_xft = true,
 	font = 'mono:size=12',			--define the default font
-	gap_x = 80,				--horizontal offset from alignment in pixels
+	gap_x = 10,				--horizontal offset from alignment in pixels
 	gap_y = 0,				--vertical offset from alignment in pixels
 	minimum_width = 260,
 	maximum_width = 260,
