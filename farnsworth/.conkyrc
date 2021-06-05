@@ -67,7 +67,7 @@ ${font}${color2}└─Codename:${font}${color3}${alignr}${exec lsb_release -c | 
 ${font mono:bold:size=12}${color1}HEALTH ${hr 2}
 ${font mono:bold}${color2}Uptime:${font}${color3}${alignr}${uptime}
 ${font mono:bold}${color2}System Temp:${font}${color3}${alignr}${hwmon 2 temp 1}°C
-${font mono:bold}${color2}CPU${font}─┬─Max Temp:${font}${color3}${alignr}${hwmon 0 temp 1}°C
+${font mono:bold}${color2}CPU${font}─┬─Package:${font}${color3}${alignr}${hwmon 0 temp 1}°C
 ${font mono}${color2}    ├─Core─┬─0:${font}${color3}${alignr}${hwmon 0 temp 2}°C
 ${font mono}${color2}    │      ├─1:${font}${color3}${alignr}${hwmon 0 temp 3}°C
 ${font mono}${color2}    │      ├─2:${font}${color3}${alignr}${hwmon 0 temp 4}°C
