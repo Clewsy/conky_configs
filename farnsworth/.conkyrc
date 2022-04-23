@@ -35,7 +35,7 @@ conky.config = {
 	color2 = 'white',			--https://www.graphviz.org/doc/info/colors.html
 	color3 = 'gray',
 	mpd_host = '127.0.0.1',
-	mpd_port = 6660,
+	mpd_port = 6600,
 }
 
 conky.text = [[
@@ -69,7 +69,7 @@ ${font mono:bold}${color2}Uptime:${font}${color3}${alignr}${uptime}
 ${font mono:bold}${color2}CPU${font}──┬─Core Temp:${font}${color3}${alignr}${hwmon 1 temp 1}°C
 ${font mono}${color2}     └─Die Temp:${font}${color3}${alignr}${hwmon 1 temp 3}°C
 ${font mono:bold}${color2}GPU${font}──┬─Temp:${font}${color3}${alignr}${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}°C
-${font mono}${color2}     └─Fan 0:${font}${color3}${alignr}${exec nvidia-settings --query "[fan:0]/GPUCurrentFanSpeedRPM" --terse}rpm
+${font mono}${color2}     ├─Fan 0:${font}${color3}${alignr}${exec nvidia-settings --query "[fan:0]/GPUCurrentFanSpeedRPM" --terse}rpm
 ${font mono}${color2}     └─Fan 1:${font}${color3}${alignr}${exec nvidia-settings --query "[fan:1]/GPUCurrentFanSpeedRPM" --terse}rpm
 ${font mono:bold}${color2}WiFi${font}───Temp:${font}${color3}${alignr}${hwmon 3 temp 1}°C
 ${font mono:bold}${color2}NVME${font}───Temp:${font}${color3}${alignr}${hwmon 0 temp 1}°C
@@ -131,20 +131,20 @@ ${font mono:bold}${color3}├─Country:${font}${alignr}${execi 600 curl -s ifco
 ${font mono:bold}${color3}├─Region:${font}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}
 ${font mono:bold}${color3}└─City:${font}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
 ${endif}
-## IF up enp2s0
-${if_up enp2s0}\
+## IF up enp6s0
+${if_up enp6s0}\
 ${font mono:bold}${color2}Local
-${font mono:bold}${color3}├─IP:${font}${alignr}${addr enp2s0}
+${font mono:bold}${color3}├─IP:${font}${alignr}${addr enp6s0}
 ${font mono:bold}${color3}├─Gateway:${font}${alignr}${gw_ip}
 ${font mono:bold}${color3}└─DNS:${font}${alignr}${nameserver}
 ${font mono:bold}${color2}Download
-${font mono:bold}${color3}├─Speed:${font}${alignr}${downspeed enp2s0}
-${font mono:bold}${color3}└─Total:${font}${alignr}${totaldown enp2s0}
-${font}${color3}${downspeedgraph enp2s0}
+${font mono:bold}${color3}├─Speed:${font}${alignr}${downspeed enp6s0}
+${font mono:bold}${color3}└─Total:${font}${alignr}${totaldown enp6s0}
+${font}${color3}${downspeedgraph enp6s0}
 ${font mono:bold}${color2}Upload
-${font mono:bold}${color3}├─Speed:${font}${alignr}${upspeed enp2s0}
-${font mono:bold}${color3}└─Total:${font}${alignr}${totalup enp2s0}
-${font}${color3}${upspeedgraph enp2s0}
+${font mono:bold}${color3}├─Speed:${font}${alignr}${upspeed enp6s0}
+${font mono:bold}${color3}└─Total:${font}${alignr}${totalup enp6s0}
+${font}${color3}${upspeedgraph enp6s0}
 
 ### MUSIC ###
 ${if_mpd_playing}\
