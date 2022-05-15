@@ -10,8 +10,9 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font1 = 'mono:bold:size=12',	--define the font for headings
+	font1 = 'mono:bold:size=10',	--define the font for headings
 	font2 = 'mono:size=8',		--define the font for labels and data
+	font3 = 'mono:size=2',
 	gap_x = 5,			--horizontal offset from alignment in pixels
 	gap_y = 20,			--vertical offset from alignment in pixels
 	minimum_height = 5,
@@ -38,7 +39,7 @@ conky.config = {
 	color2 = 'white',		--define the colour for labels		https://www.graphviz.org/doc/info/colors.html
 	color3 = 'gray',		--define the colour for data
 	mpd_host = '127.0.0.1',
-	mpd_port = '6600'
+	mpd_port = 6600
 }
 
 conky.text = [[
@@ -68,14 +69,19 @@ ${font2}${color2}Hostname:	${color3}${alignr}${nodename}
 ${font1}${color1}HEALTH${hr 2}
 ${font2}${color2}Uptime:	${color3}${alignr}${uptime}
 ${font2}${color2}Battery
+${font2}${color2}├─Voltage:	${color3}${alignr}${hwmon 2 vol 0}V
+${font2}${color2}├─Current:	${color3}${alignr}${execi 600 echo $(( $(cat hwmon2/device/current_now) / 1000))}mA
 ${font2}${color2}├─Life:	${color3}${alignr}${battery_time}
 ${font2}${color2}└─Charge:	${color3}${alignr}${battery}
 ${font2}${color2}Temperatures
 ${font2}${color2}├─System:	${color3}${alignr}${hwmon 1 temp 1}°C
-${font2}${color2}└─Core─┬─0:	${color3}${alignr}${hwmon 4 temp 2}°C
-${font2}${color2}       ├─1:	${color3}${alignr}${hwmon 4 temp 3}°C
-${font2}${color2}       ├─2:	${color3}${alignr}${hwmon 4 temp 4}°C
-${font2}${color2}       └─3:	${color3}${alignr}${hwmon 4 temp 5}°C
+${font2}${color2}├─Core─┬─0:	${color3}${alignr}${hwmon 4 temp 2}°C
+${font2}${color2}│      ├─1:	${color3}${alignr}${hwmon 4 temp 3}°C
+${font2}${color2}│      ├─2:	${color3}${alignr}${hwmon 4 temp 4}°C
+${font2}${color2}│      └─3:	${color3}${alignr}${hwmon 4 temp 5}°C
+${font2}${color2}├─NVME:	${color3}${alignr}${hwmon 3 temp 1}°C
+${font2}${color2}└─WiFi:	${color3}${alignr}${hwmon 8 temp 1}°C
+${font2}${color2}Fan Speed:	${color3}${alignr}${hwmon 6 fan 1}rpm
 
 ### PROCESSORS ###
 ${font1}${color1}PROCESSORS${hr 2}
@@ -103,7 +109,7 @@ ${font2}${color2}${top_mem name 1}	${color3}${alignr}${top mem 1}%
 ${font2}${color2}${top_mem name 2}	${color3}${alignr}${top mem 2}%
 ${font2}${color2}${top_mem name 3}	${color3}${alignr}${top mem 3}%
 ${font2}${color2}${top_mem name 4}	${color3}${alignr}${top mem 4}%
-${font2}${color2}${top_mem name 5}	${color3}${alignr}${top mem 5}%
+#${font2}${color2}${top_mem name 5}	${color3}${alignr}${top mem 5}%
 #${font2}${color2}${top_mem name 6}	${color3}${alignr}${top mem 6}%
 #${font2}${color2}${top_mem name 7}	${color3}${alignr}${top mem 7}%
 #${font2}${color2}${top_mem name 8}	${color3}${alignr}${top mem 8}%
