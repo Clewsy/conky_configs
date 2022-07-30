@@ -82,7 +82,7 @@ ${font2}${color2}│      ├─1:	${color3}${alignr}${hwmon 4 temp 3}°C
 ${font2}${color2}│      ├─2:	${color3}${alignr}${hwmon 4 temp 4}°C
 ${font2}${color2}│      └─3:	${color3}${alignr}${hwmon 4 temp 5}°C
 ${font2}${color2}├─NVME:	${color3}${alignr}${hwmon 3 temp 1}°C
-${font2}${color2}└─WiFi:	${color3}${alignr}${hwmon 8 temp 1}°C
+${font2}${color2}└─WiFi:	${color3}${alignr}${hwmon 7 temp 1}°C
 ${font2}${color2}Fan Speed:	${color3}${alignr}${hwmon 6 fan 1}rpm
 ${font3}\
 
