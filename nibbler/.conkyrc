@@ -130,9 +130,9 @@ ${if_empty ${execi 3600 curl -s ipecho.net/plain}}\
 ${font2}${color2}No External Connection\
 ## ELSE SHOW PUBLIC IP
 ${else}\
-${font2}${color2}IP Public:	${color3}${alignr}${execi 600 curl -s ipecho.net/plain}
-${font2}${color2}Region:	${color3}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}, ${execi 600 curl -s ifconfig.co/json | grep -m1 "country_iso" | cut -d "\"" -f4}
-${font2}${color2}City:		${color3}${alignr}${execi 600 curl -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
+${font2}${color2}IP Public:	${color3}${alignr}${execi 600 curl -s -4 ipecho.net/plain}
+${font2}${color2}Region:	${color3}${alignr}${execi 600 curl -s -4 ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}, ${execi 600 curl -s ifconfig.co/json | grep -m1 "country_iso" | cut -d "\"" -f4}
+${font2}${color2}City:		${color3}${alignr}${execi 600 curl -4 -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
 ${endif}
 ## IF wlp58s0
 ${if_up wlp58s0}\
