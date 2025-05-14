@@ -1,5 +1,5 @@
 conky.config = {
-    xinerama_head = 1,              --set to '2' for dual monitor setup
+    xinerama_head = 1,              --multiple monitors index starts at 0
     alignment = 'top_right',        --options {top/middle/bottom}_{left/middle/right}
     background = false,
     background = true,              --set true to fork to background when started
