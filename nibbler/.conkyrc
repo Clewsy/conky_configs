@@ -1,173 +1,170 @@
 conky.config = {
-	xinerama_head = 1,		--set to '2' for dual monitor setup
-	alignment = 'top_right',	--options {top/middle/bottom}_{left/middle/right}
-	background = true,		--set true to fork to background when started
-	border_width = 0,		--border width in pixels
-	cpu_avg_samples = 4,		--number of samples to average for CPU monitoring
-	default_color = 'gray',		--default color and border color
-	draw_borders = false,		--draw borders around text
-	draw_graph_borders = false,	--draw borders around graphs
-	draw_outline = false,
-	draw_shades = false,
-	use_xft = true,
-	font1 = 'mono:bold:size=10',	--define the font for headings
-	font2 = 'mono:size=8',		--define the font for labels and data
-	font3 = 'mono:size=2',		--define a font used for spacing between groups (i.e. newline, no text)
-	gap_x = 5,			--horizontal offset from alignment in pixels
-	gap_y = 20,			--vertical offset from alignment in pixels
-	minimum_height = 5,
-	minimum_width = 150,
-	maximum_width = 150,
-	net_avg_samples = 2,		--number of samples to average for network monitoring
-	no_buffers = true,		--subtract file system buffers from used memory
-	out_to_console = false,
-	out_to_stderr = false,
-	extra_newline = false,
-	own_window = true,
-	own_window_class = 'Conky',
-	own_window_type = 'desktop',
-	own_window_argb_visual = true,	--ARGB can be used for real transparency
-	own_window_argb_value = 0,	--define level of opacity/transparency (0-255:0-100% opacity)
-	double_buffer = true,		--use the Xdbe extension? (eliminates flicker)
-	stippled_borders = 0,		--border stippling (dashing) in pixels
-	update_interval = 1.0,
-	uppercase = false,
-	use_spacer = 'none',
-	show_graph_scale = false,
-	show_graph_range = false,
-	color1 = 'orange',		--define the colour for headings	try here for X11 color options:
-	color2 = 'white',		--define the colour for labels		https://www.graphviz.org/doc/info/colors.html
-	color3 = 'gray',		--define the colour for data
-	mpd_host = '127.0.0.1',
-	mpd_port = 6600
+    xinerama_head = 1,              --multi-monitors index starts at 0
+    alignment = 'top_right',        --options {top/middle/bottom}_{left/middle/right}
+    background = true,              --set true to fork to background when started
+    border_width = 0,               --border width in pixels
+    cpu_avg_samples = 4,            --number of samples to average for CPU monitoring
+    double_buffer = true,           --use the Xdbe extension? (eliminates flicker).
+    draw_borders = false,           --draw borders around text
+    draw_graph_borders = true,      --draw borders around graphs
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font1 = 'mono:bold:size=10',    --define the font for headings
+    font2 = 'mono:bold:size=8',     --define the font for labels
+    font3 = 'mono:size=8',          --define a font used for data
+    font4 = 'mono:bold:size=6',     --define a font used for the top logo
+    color1 = 'orange',              --define the colour for headings
+    color2 = 'white',               --define the colour for labels
+    color3 = 'gray',                --define the colour for data
+    gap_x = 10,                     --horizontal offset from alignment in pixels
+    gap_y = 0,                      --vertical offset from alignment in pixels
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,            --number of samples to average for network monitoring
+    no_buffers = true,              --subtract file system buffers from used memory
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_wayland = false,
+    out_to_x = true,
+    own_window = true,              --boolean, create own window to draw.
+    own_window_class = 'Conky',
+    own_window_type = 'normal',
+    own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+    own_window_transperent = true,
+    own_window_argb_visual = true,  --ARGB can be used for real transparency
+    own_window_argb_value = 0,      --define level of opacity/transparency (0-255:0-100% opacity)
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,           --border stippling (dashing) in pixels
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+    mpd_host = '127.0.0.1',
+    mpd_port = 6600,
 }
 
 conky.text = [[
 ### HEADER ###
-${color1}${font2}\
-           __             
-          / /  /\         
-         / /  /  \        
-        / /  / /\ \       
-       / /  /  \ \ \      
-      / /  / /\ \ \ \     
-     / /__/ /__\ \ \ \    
-    /____________ \ \ \   
-     ____________\ \ \/   
-     \______________\     
-${font3}\
+${font4}${color1}\
+${alignc}          __             
+${alignc}         / /  /\         
+${alignc}        / /  /  \        
+${alignc}       / /  / /\ \       
+${alignc}      / /  /  \ \ \      
+${alignc}     / /  / /\ \ \ \     
+${alignc}    / /__/ /__\ \ \ \    
+${alignc}   /____________ \ \ \   
+${alignc}    ____________\ \ \/   
+${alignc}    \______________\     
 
 ### SYSTEM ###
-${font1}${color1}SYSTEM${hr 2}
-${font2}${color2}Architecture:	${color3}${alignr}${machine}
-${font2}${color2}OS:		${color3}${alignr}${exec uname -o}
-${font2}${color2}Kernel:	${color3}${alignr}${scroll 17 ${exec uname -r}}
-${font2}${color2}Distribution:	${color3}${alignr}${exec lsb_release -i | cut -f2} ${exec lsb_release -r | cut -f2}
-${font2}${color2}Codename:	${color3}${alignr}${exec lsb_release -c | cut -f2}
-${font2}${color2}Hostname:	${color3}${alignr}${nodename}
-${font3}\
-
+${font1}${color1}SYSTEM ${hr 2}
+${font2}${color2}Hostname:${font3}${color3}${alignr}${nodename}
+${font2}${color2}Architecture:${font3}${color3}${alignr}${machine}
+${font2}${color2}OS:${font3}${color3}${alignr}${exec uname -o}
+${font3}${color2}├─Kernel:${font3}${color3}${alignr}${exec uname -s}
+${font3}${color2}└─Release:${font3}${color3}${alignr}${exec uname -r}
+${font2}${color2}Distribution:${font3}${color3}${alignr}${exec lsb_release -i | cut -f2}
+${font3}${color2}├─Release:${font3}${color3}${alignr}${exec lsb_release -r | cut -f2}
+${font3}${color2}└─Codename:${font3}${color3}${alignr}${exec lsb_release -c | cut -f2}
+\
 ### HEALTH ###
 ${font1}${color1}HEALTH${hr 2}
-${font2}${color2}Uptime:	${color3}${alignr}${uptime}
+${font2}${color2}Uptime:    ${color3}${alignr}${uptime}
 ${font2}${color2}Battery
-${font2}${color2}├─Voltage:	${color3}${alignr}${hwmon 2 vol 0}V
-${font2}${color2}├─Current:	${color3}${alignr}${execi 600 echo $(( $(cat hwmon2/device/current_now) / 1000))}mA
-${font2}${color2}├─Life:	${color3}${alignr}${battery_time}
-${font2}${color2}└─Charge:	${color3}${alignr}${battery}
+${font2}${color2}├─Voltage:    ${color3}${alignr}${hwmon 2 vol 0}V
+${font2}${color2}├─Life:    ${color3}${alignr}${battery_time}
+${font2}${color2}└─Charge:    ${color3}${alignr}${battery}
 ${font2}${color2}Temperatures
-${font2}${color2}├─System:	${color3}${alignr}${hwmon 1 temp 1}°C
-${font2}${color2}├─Core─┬─0:	${color3}${alignr}${hwmon 4 temp 2}°C
-${font2}${color2}│      ├─1:	${color3}${alignr}${hwmon 4 temp 3}°C
-${font2}${color2}│      ├─2:	${color3}${alignr}${hwmon 4 temp 4}°C
-${font2}${color2}│      └─3:	${color3}${alignr}${hwmon 4 temp 5}°C
-${font2}${color2}├─NVME:	${color3}${alignr}${hwmon 3 temp 1}°C
-${font2}${color2}└─WiFi:	${color3}${alignr}${hwmon 7 temp 1}°C
-${font2}${color2}Fan Speed:	${color3}${alignr}${hwmon 6 fan 1}rpm
-${font3}\
-
+${font2}${color2}├─System:    ${color3}${alignr}${hwmon 5 temp 1}°C
+${font2}${color2}├─Core:    ${color3}${alignr}${hwmon 7 temp 2}°C
+${font2}${color2}├─NVME:    ${color3}${alignr}${hwmon 3 temp 1}°C
+${font2}${color2}└─WiFi:    ${color3}${alignr}${hwmon 8 temp 1}°C
+${font2}${color2}Fan Speed:    ${color3}${alignr}${hwmon 6 fan 1}rpm
+\
 ### PROCESSORS ###
-${font1}${color1}PROCESSORS${hr 2}
-${font2}${color3}${cpugraph cpu0 10}
-${font2}${color2}Core0: ${cpu cpu0}% ${cpubar cpu0}
-${font2}${color2}Core1: ${cpu cpu1}% ${cpubar cpu1}
-${font2}${color2}Core2: ${cpu cpu2}% ${cpubar cpu2}
-${font2}${color2}Core3: ${cpu cpu3}% ${cpubar cpu3}
-${font3}\
-
+${font1}${color1}PROCESSORS ${hr 2}
+${font2}${color2}${cpugraph cpu0 20,}
+${font2}${color2}Cores:
+${font2}${color2}0: ${cpubar cpu0 8,70} ${alignr}${cpubar cpu1 7,60} :1
+${font2}${color2}2: ${cpubar cpu2 8,70} ${alignr}${cpubar cpu3 7,60} :3
+${font2}${color2}4: ${cpubar cpu4 8,70} ${alignr}${cpubar cpu5 7,60} :5
+${font2}${color2}6: ${cpubar cpu6 8,70} ${alignr}${cpubar cpu7 7,60} :7
+\
 ### MEMORY ###
-${font1}${color1}MEMORY${hr 2}
-${font2}${color2}RAM:	${color3}${alignr}${mem}/${memmax}
-${font2}${color2}${memperc}% ${color3}${membar}${alignr}
-#${font2}${color2}SWAP:	${color3}${alignr}${swap}/${swapmax}
-#${font2}${color2}${swapperc}% ${color3}${swapbar}
-${font3}\
-
+${font1}${color1}MEMORY ${hr 2}
+${font2}${color2}RAM:${color3}${alignc} ${mem}/${memmax} ${alignr}${memperc}%
+${font3}${color3}${membar}
+${font2}${color2}SWAP:${color3}${alignc} ${swap}/${swapmax} ${alignr}${swapperc}%
+${font3}${color3}${swapbar}
+\
 ### STORAGE ###
-${font1}${color1}STORAGE${hr 2}
-${font2}${color2}Root: ${color3}${alignr}${fs_used /}/${fs_size /}
+${font1}${color1}STORAGE ${hr 2}
+${font2}${color2}Root:${font3}${color3}${alignr}${fs_used /}/${fs_size /}
 ${font2}${color2}${fs_used_perc /}% ${fs_bar /}
-${font3}\
-
+\
 ### PROCESSES ###
-${font1}${color1}PROCESSES${hr 2}
-${font2}${color2}${top_mem name 1}	${color3}${alignr}${top mem 1}%
-${font2}${color2}${top_mem name 2}	${color3}${alignr}${top mem 2}%
-${font2}${color2}${top_mem name 3}	${color3}${alignr}${top mem 3}%
-${font2}${color2}${top_mem name 4}	${color3}${alignr}${top mem 4}%
-#${font2}${color2}${top_mem name 5}	${color3}${alignr}${top mem 5}%
-#${font2}${color2}${top_mem name 6}	${color3}${alignr}${top mem 6}%
-#${font2}${color2}${top_mem name 7}	${color3}${alignr}${top mem 7}%
-#${font2}${color2}${top_mem name 8}	${color3}${alignr}${top mem 8}%
-#${font2}${color2}${top_mem name 9}	${color3}${alignr}${top mem 9}%
-#${font2}${color2}${top_mem name 10	${color3}}${alignr}${top mem 10}%
-${font3}\
-
+#${font1}${color1}PROCESSES ${hr 2}
+#${font2}${color2}${top_mem name 1}${font3}${color3}${alignr}${top mem 1}%
+#${font2}${color2}${top_mem name 2}${font3}${color3}${alignr}${top mem 2}%
+#${font2}${color2}${top_mem name 3}${font3}${color3}${alignr}${top mem 3}%
+#${font2}${color2}${top_mem name 4}${font3}${color3}${alignr}${top mem 4}%
+#${font2}${color2}${top_mem name 5}${font3}${color3}${alignr}${top mem 5}%
+\
 ### NETWORK ###
-${font1}${color1}NETWORK${hr 2}
-## IF NO INTERNET
+${font1}${color1}NETWORK ${hr 2}
+### IF NO INTERNET
 ${if_empty ${execi 3600 curl -s ipecho.net/plain}}\
 ${font2}${color2}No External Connection\
-## ELSE SHOW PUBLIC IP
+### ELSE SHOW PUBLIC IP
 ${else}\
-${font2}${color2}IP Public:	${color3}${alignr}${execi 600 curl -s -4 ipecho.net/plain}
-${font2}${color2}Region:	${color3}${alignr}${execi 600 curl -s -4 ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}, ${execi 600 curl -s ifconfig.co/json | grep -m1 "country_iso" | cut -d "\"" -f4}
-${font2}${color2}City:		${color3}${alignr}${execi 600 curl -4 -s ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
+${font2}${color2}Public
+${font2}${color3}├─IP:${font3}${alignr}${execi 3600 curl -s -4 ipecho.net/plain}
+${font2}${color3}├─Country:${font3}${alignr}${execi 600 curl -s -4 ifconfig.co/json | grep -m1 "country" | cut -d "\"" -f4}
+${font2}${color3}├─Region:${font3}${alignr}${execi 600 curl -s -4 ifconfig.co/json | grep -m1 "region_name" | cut -d "\"" -f4}
+${font2}${color3}└─City:${font3}${alignr}${execi 600 curl -s -4 ifconfig.co/json | grep -m1 "city" | cut -d "\"" -f4}\
 ${endif}
-## IF wlp58s0
-${if_up wlp58s0}\
-${font2}${color2}IP Local:	${color3}${alignr}${addr wlp58s0}
-${font2}${color2}Gateway:	${color3}${alignr}${gw_ip}
-${font2}${color2}DNS:		${color3}${alignr}${nameserver}
-${font2}${color2}ESSID:		${color3}${alignr}${wireless_essid wlp58s0} (${wireless_link_qual_perc wlp58s0}%)
-${font2}${color2}${downspeedgraph wlp58s0 10}
-${font2}${color2}Down: ${color3}${downspeed wlp58s0}	${color2}${alignr}Total: ${color3}${totaldown wlp58s0}
-${font2}${color2}${upspeedgraph wlp58s0 10}
-${font2}${color2}Up: ${color3}${upspeed wlp58s0}	${color2}${alignr}Total: ${color3}${totalup wlp58s0}
-## ELSE IF enp2s0
-${else}${if_up enp2s0}\
-${font2}${color2}IP Local:	${alignr}${addr enp2s0}
-${font2}${color2}Gateway:	${alignr}${gw_ip}
-${font2}${color2}DNS:		${alignr}${nameserver}
-${font2}${color2}${downspeedgraph enp2s0 10}
-${font2}${color2}Down: ${color3}${downspeed enp2s0}	${color2}${alignr}Total: ${color3}${totaldown enp2s0}
-${font2}${color2}${upspeedgraph enp2s0 10}
-${font2}${color2}Up: ${color3}${upspeed enp2s0}		${color2}${alignr}Total: ${color3}${totalup enp2s0}\
+### IF up enp6s0u2u4
+${if_up enp6s0u2u4}\
+${font2}${color2}Local
+${font2}${color3}├─IP:${font3}${alignr}${addr enp6s0u2u4}
+${font2}${color3}└─Gateway:${font3}${alignr}${gw_ip}
+${font2}${color2}Download
+${font2}${color3}├─Speed:${font3}${alignr}${downspeed enp6s0u2u4}
+${font2}${color3}└─Total:${font3}${alignr}${totaldown enp6s0u2u4}
+${font3}${color3}${downspeedgraph enp6s0u2u4 20,}
+${font2}${color2}Upload
+${font2}${color3}├─Speed:${font3}${alignr}${upspeed enp6s0u2u4}
+${font2}${color3}└─Total:${font3}${alignr}${totalup enp6s0u2u4}
+${font3}${color3}${upspeedgraph enp6s0u2u4 20,}
+### ELSE IF wlp58s0
+${else}${if_up wlp58s0}\
+${font2}${color2}Local
+${font2}${color3}├─IP:${font3}${alignr}${addr wlp58s0}
+${font2}${color3}└─Gateway:${font3}${alignr}${gw_ip}
+${font2}${color2}ESSID:        ${color3}${alignr}${wireless_essid wlp58s0} (${wireless_link_qual_perc wlp58s0}%)
+${font2}${color2}Download
+${font2}${color3}├─Speed:${font3}${alignr}${downspeed wlp58s0}
+${font2}${color3}└─Total:${font3}${alignr}${totaldown wlp58s0}
+${font3}${color3}${downspeedgraph wlp58s0 20,}
+${font2}${color2}Upload
+${font2}${color3}├─Speed:${font3}${alignr}${upspeed wlp58s0}
+${font2}${color3}└─Total:${font3}${alignr}${totalup wlp58s0}
+${font3}${color3}${upspeedgraph wlp58s0 20,}
 ${endif}${endif}\
-${font3}\
-
+\
 ### MUSIC ###
 ${if_mpd_playing}\
-${font1}${color1}MUSIC${hr 2}
-${font2}${color2}Album:				${color3}${alignr}${scroll 15 ${mpd_album}}
-${if_empty ${mpd_date}}${else}\
-${font2}${color2}Year:				${color3}${alignr}${mpd_date}${endif}
-${font2}${color2}Artist:			${color3}${alignr}${mpd_artist}
-${font2}${color2}Title:				${color3}${alignr}${scroll 15 ${mpd_title}}
-${font2}${color2}${mpd_elapsed}/${mpd_length}	${color3}${alignr}${mpd_percent}%
-${font2}${color2}${mpd_bar}
-${font2}${color2}Vol:${color3}${mpd_vol}	${color3}${alignr}${mpd_status}
-${else}\
-${font1}${color1}${hr 2}
-${font OpenLogos:normal:size=60}${goto 42}u${endif}
+${font1}${color1}MUSIC${hr 2}${font3}${color}
+${font2}${color}Album  ${alignr}${font3}${color3} ${if_empty ${mpd_album}}Unknown${else}${scroll 19 ${mpd_album}}${endif}
+${font2}${color}Year   ${alignr}${font3}${color3} ${if_empty ${mpd_date}}Unknown${else}${mpd_date}${endif}
+${font2}${color}Artist ${alignr}${font3}${color3} ${if_empty ${mpd_artist}}Unknown${else}${scroll 19 ${mpd_artist}}${endif}
+${font2}${color}Title  ${alignr}${font3}${color3} ${if_empty ${mpd_title}}Unknown${else}${scroll 19 ${mpd_title}}${endif}
+${font2}${color}${if_empty ${mpd_elapsed}}${else}${mpd_elapsed}/${mpd_length}${alignr}${color3}${mpd_bar 8,100}${endif}
+${font2}${color}Volume ${font3}${mpd_vol}% ${alignr}${color3}${if_empty ${mpd_status}}${else}${mpd_status}${endif}
+${else}${font}${color1}${hr 2}
+${endif}
 ]]
