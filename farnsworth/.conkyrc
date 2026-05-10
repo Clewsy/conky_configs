@@ -10,9 +10,9 @@ conky.config = {
     draw_outline = false,
     draw_shades = false,
     extra_newline = false,
-    font1 = 'mono:bold:size=12',    --define the headings font
-    font2 = 'mono:bold:size=10',    --define the sub-headings font
-    font3 = 'mono:size=10',         --define the values font
+    font1 = 'mono:bold:size=11',    --define the headings font
+    font2 = 'mono:bold:size=9',    --define the sub-headings font
+    font3 = 'mono:size=9',         --define the values font
     color1 = 'chartreuse3',         --try here for X11 color options:
     color2 = 'white',               --https://www.graphviz.org/doc/info/colors.html
     color3 = 'gray',
@@ -74,9 +74,10 @@ ${font3}${color2}└─Codename:${font3}${color3}${alignr}${exec lsb_release -c 
 ### HEALTH ###
 ${font1}${color1}HEALTH ${hr 2}
 ${font2}${color2}Uptime:${font3}${color3}${alignr}${uptime}
-${font2}${color2}CPU${font3}──┬──────Temp:${color3}${alignr}${hwmon 4 temp 2}°C
-${font3}${color2}     └───────Fan:${font3}${color3}${alignr}${hwmon 4 fan 1}rpm
-${font2}${color2}Motherboard${font3}─Temp:${color3}${alignr}${hwmon 2 temp 3}°C
+${font2}${color2}CPU${font3}──┬──────Temp:${color3}${alignr}${hwmon 1 temp 3}°C
+${font3}${color2}     └───────Fan:${font3}${color3}${alignr}${hwmon 3 fan 1}rpm
+${font2}${color2}Motherboard${font3}─Temp:${color3}${alignr}${hwmon 3 temp 3}°C
+${font2}${color2}Chipset${font3}─────Temp:${color3}${alignr}${hwmon 3 temp 1}°C
 ${font2}${color2}GPU${font3}─────────Temp:${color3}${alignr}${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader}°C
 ${font2}${color2}NVME${font3}────────Temp:${color3}${alignr}${hwmon 0 temp 1}°C
 ${font2}${color2}WiFi${font3}────────Temp:${color3}${alignr}${hwmon 5 temp 1}°C
@@ -122,9 +123,9 @@ ${font2}${color2}${top_mem name 4}${font3}${color3}${alignr}${top mem 4}%
 ${font2}${color2}${top_mem name 5}${font3}${color3}${alignr}${top mem 5}%
 ${font2}${color2}${top_mem name 6}${font3}${color3}${alignr}${top mem 6}%
 ${font2}${color2}${top_mem name 7}${font3}${color3}${alignr}${top mem 7}%
-${font2}${color2}${top_mem name 8}${font3}${color3}${alignr}${top mem 8}%
-${font2}${color2}${top_mem name 9}${font3}${color3}${alignr}${top mem 9}%
-${font2}${color2}${top_mem name 10}${font3}${color3}${alignr}${top mem 10}%
+#${font2}${color2}${top_mem name 8}${font3}${color3}${alignr}${top mem 8}%
+#${font2}${color2}${top_mem name 9}${font3}${color3}${alignr}${top mem 9}%
+#${font2}${color2}${top_mem name 10}${font3}${color3}${alignr}${top mem 10}%
 \
 ### NETWORK ###
 ${font1}${color1}NETWORK ${hr 2}
